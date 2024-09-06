@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Multiple Tabs</title>
+    <script type="text/javascript">
+        // Function to open multiple tabs when the page loads
+        function openTabs() {
+            var urls = [
+                'https://steamcommunity.com/my/', 
+                'https://csfloat.com/', 
+                'https://csnades.gg/', 
+                'https://pracc.com/', 
+                'https://xplay.gg/', 
+                'https://cybershoke.net/cs2/'
+            ];
+
+            // Loop through each URL and create anchor elements
+            for (var i = 0; i < urls.length; i++) {
+                var link = document.createElement('a'); // Create anchor element
+                link.href = urls[i]; // Set URL
+                link.target = '_blank'; // Ensure it opens in a new tab
+                document.body.appendChild(link); // Append to the document body
+                link.click(); // Programmatically click the link
+                document.body.removeChild(link); // Clean up after clicking
+            }
+        }
+
+        // Automatically open tabs when the page loads
+        window.onload = openTabs;
+    </script>
+</head>
+<body>
+    <h1>Opening Tabs...</h1>
+    <p>If the tabs don't open, make sure your browser allows pop-ups for this page.</p>
+</body>
+</html>

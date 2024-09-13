@@ -6,20 +6,37 @@
     <title>ChuckLennon's URLs</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Roboto, sans-serif;
+      		background-color: #140738;
         }
 
         /* Center the title and underline */
         h1 {
             text-align: center;
-            text-decoration: underline;
             margin-bottom: 20px;
+      		color: darkorange;
         }
 
         /* Fast Access section styles */
         .fast-access {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+      		color: darkorange;
+        }
+      
+      	.fast-access h2 {
+            		margin-bottom: 20px;
+      }
+
+        .fast-access ul {
+            display: flex;
+            justify-content: space-around; /* Evenly distribute the items */
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .fast-access li {
+            margin: 0 10px; /* Optional, adds a bit of extra spacing between items */
         }
 
         /* Link styling */
@@ -41,6 +58,7 @@
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
+      		color: darkorange;
         }
 
         .category {
@@ -50,7 +68,6 @@
         .category h3 {
             text-align: center;
             margin-bottom: 15px;
-            text-decoration: underline;
         }
 
         /* Aligning the lists inside the categories */
@@ -60,14 +77,14 @@
         }
 
         li {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
 
     <!-- Page Title -->
-    <h1>My URLs</h1>
+    <h1>Useful URLs :</h1>
 
     <!-- Fast Access Links Section -->
     <div class="fast-access">
@@ -100,23 +117,8 @@
     <div class="categories">
         <!-- Useful Category -->
         <div class="category">
-            <h3>Useful</h3>
+            <h3>Practice</h3>
             <ul>
-                <li class="link-item">
-                    <a href="https://CSStats.gg/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://www.google.com/favicon.ico" alt="csstats.gg">CSStats
-                    </a>
-                </li>
-                <li class="link-item">
-                    <a href="https://Faceitfinder.xyz/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://www.google.com/favicon.ico" alt="faceitfinder.xyz">Faceit Finder
-                    </a>
-                </li>
-                <li class="link-item">
-                    <a href="https://FaceitFinder.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://www.google.com/favicon.ico" alt="faceitfinder.com">FaceitFinder
-                    </a>
-                </li>
                 <li class="link-item">
                     <a href="https://cybershoke.net/" target="_blank" rel="noopener noreferrer">
                         <img src="https://www.google.com/favicon.ico" alt="cybershoke.net">Cybershoke
@@ -135,7 +137,32 @@
             </ul>
         </div>
 
-        <!-- Steam Category -->
+
+        <!-- Useful Category -->
+        <div class="category">
+            <h3>Stats</h3>
+            <ul>
+                <li class="link-item">
+                    <a href="https://CSStats.gg/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="csstats.gg">CSStats
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://Faceitfinder.xyz/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="faceitfinder.xyz">Faceit Finder
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://FaceitFinder.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="faceitfinder.com">FaceitFinder
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+
+      <!-- Steam Category -->
         <div class="category">
             <h3>Steam</h3>
             <ul>

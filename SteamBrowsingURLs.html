@@ -4,23 +4,208 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChuckLennon's URLs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
+        /* Center the title and underline */
+        h1 {
+            text-align: center;
+            text-decoration: underline;
+            margin-bottom: 20px;
+        }
+
+        /* Fast Access section styles */
+        .fast-access {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Link styling */
+        a {
+            text-decoration: none;
+            color: #0073e6;
+        }
+
+        /* Adding an icon to each link */
+        .link-item img {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* Flexbox for column layout */
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .category {
+            width: 22%; /* Approximate width for 4 columns */
+        }
+
+        .category h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            text-decoration: underline;
+        }
+
+        /* Aligning the lists inside the categories */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <style>align: center;</style>
+
+    <!-- Page Title -->
     <h1>My URLs</h1>
-    <ul>
-        <li><a href="https://cybershoke.net/cs2" target="_blank" rel="noopener noreferrer">Cybershoke</a></li>
-        <li><a href="https://xplay.gg/" target="_blank" rel="noopener noreferrer">XPlay</a></li>
-        <li><a href="https://pracc.com/" target="_blank" rel="noopener noreferrer">Pracc.com</a></li>
-        <li><a href="https://csnades.gg/" target="_blank" rel="noopener noreferrer">CSNades</a></li>
-        <li><a href="https://csgostash.com/" target="_blank" rel="noopener noreferrer">CSStash</a></li>
-        <li><a href="https://csfloat.com/" target="_blank" rel="noopener noreferrer">CSFloat</a></li>
-        <li><a href="https://buff.market" target="_blank" rel="noopener noreferrer">Buff Market</a></li>
-        <li><a href="https://cs2inspects.com/" target="_blank" rel="noopener noreferrer">CS2 Inspects</a></li>
-        <li><a href="https://cs-sticker.com/" target="_blank" rel="noopener noreferrer">CS Stickers Crafter</a></li>
-        <li><a href="https://steamcommunity.com/my/" target="_blank" rel="noopener noreferrer">Steam</a></li>
-        <li><a href="https://www.google.com" target="_blank" rel="noopener noreferrer">New Window Google</a></li>
-    </ul>
+
+    <!-- Fast Access Links Section -->
+    <div class="fast-access">
+        <h2>Fast Access</h2>
+        <ul>
+            <li class="link-item">
+                <a href="https://cybershoke.net/cs2" target="_blank" rel="noopener noreferrer">
+                    <img src="https://www.google.com/favicon.ico" alt="cybershoke.net">Cybershoke
+                </a>
+            </li>
+            <li class="link-item">
+                <a href="https://csnades.gg" target="_blank" rel="noopener noreferrer">
+                    <img src="https://www.google.com/favicon.ico" alt="csnades.gg">CSNades
+                </a>
+            </li>
+            <li class="link-item">
+                <a href="https://csfloat.com" target="_blank" rel="noopener noreferrer">
+                    <img src="https://www.google.com/favicon.ico" alt="csfloat.com">CSFloat
+                </a>
+            </li>
+            <li class="link-item">
+                <a href="https://steamcommunity.com/my/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://www.google.com/favicon.ico" alt="steamcommunity.com">Steam
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="categories">
+        <!-- Useful Category -->
+        <div class="category">
+            <h3>Useful</h3>
+            <ul>
+                <li class="link-item">
+                    <a href="https://CSStats.gg/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="csstats.gg">CSStats
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://Faceitfinder.xyz/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="faceitfinder.xyz">Faceit Finder
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://FaceitFinder.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="faceitfinder.com">FaceitFinder
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://cybershoke.net/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="cybershoke.net">Cybershoke
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://xplay.gg/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="xplay.gg">XPlay
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://pracc.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="pracc.com">Pracc
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Steam Category -->
+        <div class="category">
+            <h3>Steam</h3>
+            <ul>
+                <li class="link-item">
+                    <a href="https://steamcommunity.com/my/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="steamcommunity.com">Steam Profile
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://steamcommunity.com/my/inventory#730" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="steamcommunity.com">Steam Inventory
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://steamcommunity.com/workshop/browse/?appid=730&browsesort=trend&section=readytouseitems" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="steamcommunity.com">Steam Workshop
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Skins Category -->
+        <div class="category">
+            <h3>Skins</h3>
+            <ul>
+                <li class="link-item">
+                    <a href="https://csfloat.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="csfloat.com">CSFloat
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://csgostash.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="csgostash.com">CSStash
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://cs2inspects.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="cs2inspects.com">CS2 Inspects
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://cs-sticker.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="cs-sticker.com">CS Stickers
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://steamcommunity.com/market/search?appid=730" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="steamcommunity.com">Steam Market
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Others Category -->
+        <div class="category">
+            <h3>Others</h3>
+            <ul>
+                <li class="link-item">
+                    <a href="https://youtu.be" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="youtube.com">YouTube
+                    </a>
+                </li>
+                <li class="link-item">
+                    <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.google.com/favicon.ico" alt="google.com">Google
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -541,10 +541,27 @@
                             <img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/CS.ico" alt="CS Updates">CS Updates
                         </a>
                     </li>
+                    <li class="link-item">
+                        <a href="https://developer.valvesoftware.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/ValveDeveloper.ico" alt="Valve Developer">Valve Developer
+                        </a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#" onclick="copyLaunchOptions()">
+                            <img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="Launch Options" onclick="copyLaunchOptions()" style="cursor: pointer;">Launch Options
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 
 </body>
+
+<script>
+function copyLaunchOptions() {
+    const text = `-noreflex -noforcemaccel -noforcemspd -noforcemparms -refresh 165 -high -tickrate 128 -maxplayers_override 1000000 -language chucklennon -maxdownloadsizemb 3000 -allow_third_party_software -untrusted `;
+    navigator.clipboard.writeText(text);
+}
+</script>
 </html>

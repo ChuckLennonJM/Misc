@@ -105,7 +105,7 @@
 
 		.google-search {
 			position: fixed;
-			top: 1%;
+			top: 2%;
 			left: 5%;
 			display: flex;
 			align-items: center;
@@ -623,37 +623,18 @@
                     </li>
                 </ul>
             </div>
-    </div>
-        </div>
+	    </div>
+	</div>
 
 </body>
 
 <script>
+
 	function copyLaunchOptions() {
 	    const text = `-noreflex -noforcemaccel -noforcemspd -noforcemparms -refresh 165 -high -tickrate 128 -maxplayers_override 1000000 -language chucklennon -maxdownloadsizemb 3000 -allow_third_party_software -untrusted`;
 	    navigator.clipboard.writeText(text);
 	}
 
-	document.addEventListener("DOMContentLoaded", () => {
-		const searchForm = document.querySelector(".google-search");
-		const searchInput = searchForm.querySelector("input[name='q']");
-
-	searchForm.addEventListener("submit", (e) => {
-		e.preventDefault(); // stop normal form submission
-		const query = searchInput.value.trim();
-		if (!query) return;
-
-		const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-
-	    if (e.ctrlKey || e.metaKey) {
-	      // Ctrl+Enter / Cmd+Enter = new tab/window
-	      window.open(searchUrl, "_blank", "noopener,noreferrer");
-		} else {
-	      // Normal Enter = same tab/window
-	      window.location.href = searchUrl;
-		}
-  });
-});
 </script>
 
 });

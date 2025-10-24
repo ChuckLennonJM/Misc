@@ -40,13 +40,11 @@
 			margin: 0 10px;
 		}
 
-		/* Link styling */
 		a {
 			text-decoration: none;
 			color: #0073e6;
 		}
 
-		/* Adding an icon to each link */
 		.link-item img {
 			width: 16px;
 			height: 16px;
@@ -54,7 +52,6 @@
 			vertical-align: middle;
 		}
 
-		/* Flexbox for column layout */
 		.categories {
 			display: flex;
 			justify-content: space-around;
@@ -82,7 +79,6 @@
 			padding-left: 20px;
 		}
 
-		/* Aligning the lists inside the categories */
 		ul {
 			list-style-type: none;
 			padding: 0;
@@ -103,7 +99,7 @@
 
 		.google-search {
 			position: fixed;
-			top: 2%;
+			top: 3%;
 			left: 5%;
 			display: flex;
 			align-items: center;
@@ -112,6 +108,7 @@
 			padding: 4px 12px;
 			width: 320px;
 			transition: background 0.2s ease, box-shadow 0.2s ease;
+			transform: translateZ(0);
 		}
 
 		.google-search:hover {
@@ -128,6 +125,7 @@
 			align-items: center;
 			justify-content: center;
 			cursor: pointer;
+			position: relative;
 		}
 
 		.google-search button svg {
@@ -158,6 +156,9 @@
 			display: flex; /* show when there’s text */
 		}
 
+		.google-search button:hover svg {
+			fill: #b6bbbf;
+		}
 
 	</style>
 	
@@ -165,6 +166,14 @@
 <body>
 
 	<form action="https://www.google.com/search" method="get" target="_blank" class="google-search">
+		<button type="button" class="google-logo" aria-label="Google menu">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20" height="20">
+				<path fill="#0f0f0f" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.54 2.92 30.15 1 24 1 14.64 1 6.51 6.23 2.74 14.26l7.98 6.19C12.6 14.38 17.84 9.5 24 9.5z"/>
+				<path fill="#0f0f0f" d="M46.14 24.5c0-1.57-.14-3.09-.41-4.55H24v9.1h12.46c-.54 2.91-2.14 5.39-4.56 7.08l7.02 5.46C43.66 38.36 46.14 31.91 46.14 24.5z"/>
+				<path fill="#0f0f0f" d="M10.72 28.56a14.52 14.52 0 0 1 0-9.12L2.74 14.25a23.96 23.96 0 0 0 0 19.5l7.98-5.19z"/>
+				<path fill="#0f0f0f" d="M24 46.5c6.15 0 11.34-2.03 15.12-5.53l-7.02-5.46C29.57 37.5 26.9 38.5 24 38.5c-6.16 0-11.4-4.88-13.28-11.44l-7.98 5.19C6.51 41.77 14.64 47 24 47z"/>
+			</svg>
+		</button>
 		<input type="text" name="q" placeholder="Search Google..." />
 		<button type="button" class="clear-btn" aria-label="Clear search">
 			<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
@@ -647,19 +656,19 @@
 		navigator.clipboard.writeText(text);
 	}
 
-const input = document.querySelector('.google-search input[name="q"]');
-const form = document.querySelector('.google-search');
-const clearBtn = document.querySelector('.google-search .clear-btn');
+	const input = document.querySelector('.google-search input[name="q"]');
+	const form = document.querySelector('.google-search');
+	const clearBtn = document.querySelector('.google-search .clear-btn');
 
-input.addEventListener('input', () => {
-	form.classList.toggle('has-text', input.value.trim() !== '');
-});
+	input.addEventListener('input', () => {
+		form.classList.toggle('has-text', input.value.trim() !== '');
+	});
 
-clearBtn.addEventListener('click', () => {
-	input.value = '';
-	form.classList.remove('has-text');
-	input.focus();
-});
+	clearBtn.addEventListener('click', () => {
+		input.value = '';
+		form.classList.remove('has-text');
+		input.focus();
+	});
 
 </script>
 

@@ -678,75 +678,77 @@
 
 
 
+
 	const input = document.querySelector('.google-search input[name="q"]');
 	const form = document.querySelector('.google-search');
 	const clearBtn = document.querySelector('.google-search .clear-btn');
 
-	let history = [''];
+	let history = [""];
 	let historyIndex = 0;
-	let userTyping = true;
+	let ignoreNextInput = false;
 
-	// Update has-text class based on field content
-	function updateHasText() {
-		form.classList.toggle('has-text', input.value.trim() !== '');
+	function updateClearButton() {
+		// Show the clear button if the field is not completely empty
+		form.classList.toggle('has-text', input.value !== '');
 	}
 
-	// Input typing
 	input.addEventListener('input', () => {
-		if (userTyping) {
+		if (ignoreNextInput) {
+			ignoreNextInput = false;
+			return;
+		}
+		const val = input.value;
+		if (history[historyIndex] !== val) {
 			history = history.slice(0, historyIndex + 1);
-			history.push(input.value);
+			history.push(val);
 			historyIndex++;
 		}
-		updateHasText();
+		updateClearButton();
 	});
 
-	// Clear button click
 	clearBtn.addEventListener('click', () => {
-		history = history.slice(0, historyIndex + 1);
-		history.push('');
-		historyIndex++;
 		input.value = '';
-		updateHasText();
+		updateClearButton();
 		input.focus();
 	});
 
-	// Ctrl + Z / Y undo-redo
 	input.addEventListener('keydown', (e) => {
 		if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
 			e.preventDefault();
 			if (historyIndex > 0) {
 				historyIndex--;
-				userTyping = false;
+				ignoreNextInput = true;
 				input.value = history[historyIndex];
-				updateHasText();
-				userTyping = true;
+				updateClearButton();
 			}
 		} else if (e.ctrlKey && (e.key === 'y' || e.key === 'Y')) {
 			e.preventDefault();
 			if (historyIndex < history.length - 1) {
 				historyIndex++;
-				userTyping = false;
+				ignoreNextInput = true;
 				input.value = history[historyIndex];
-				updateHasText();
-				userTyping = true;
+				updateClearButton();
 			}
 		}
 	});
 
-	// When the form is submitted (Google search triggered)
 	form.addEventListener('submit', (e) => {
-		// Allow the search to proceed
+		// Let the search trigger normally
+		// but keep the last search in undo history
+		history = [...history, input.value];
+		historyIndex = history.length - 1;
+
+		// Clear the field after submission but keep undo buffer
 		setTimeout(() => {
-			history = history.slice(0, historyIndex + 1);
-			history.push('');
-			historyIndex++;
 			input.value = '';
-			updateHasText();
-		}, 100); // Short delay so the search submission happens first
+			updateClearButton();
+		}, 50);
 	});
 
-	updateHasText();
+	// Handle pasted text, alt codes, etc.
+	input.addEventListener('change', updateClearButton);
+
+	updateClearButton();
 
 
 

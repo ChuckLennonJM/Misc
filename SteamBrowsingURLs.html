@@ -669,6 +669,68 @@
 		input.focus();
 	});
 
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.querySelector("input[type='text']"); // adjust if needed
+  if (!searchInput) return;
+
+  let history = [searchInput.value];
+  let index = 0;
+  let manual = false;
+
+  searchInput.addEventListener("input", () => {
+    if (!manual) {
+      // remove future states when typing after undo
+      history = history.slice(0, index + 1);
+      history.push(searchInput.value);
+      index = history.length - 1;
+    }
+  });
+
+  searchInput.addEventListener("keydown", (e) => {
+    // Ctrl + Z (undo)
+    if (e.ctrlKey && e.key.toLowerCase() === "z") {
+      e.preventDefault();
+      if (index > 0) {
+        manual = true;
+        index--;
+        searchInput.value = history[index];
+        manual = false;
+      }
+    }
+
+    // Ctrl + Y (redo)
+    if (e.ctrlKey && e.key.toLowerCase() === "y") {
+      e.preventDefault();
+      if (index < history.length - 1) {
+        manual = true;
+        index++;
+        searchInput.value = history[index];
+        manual = false;
+      }
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+	
 </script>
 
 </html>

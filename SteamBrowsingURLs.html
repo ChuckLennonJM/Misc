@@ -660,7 +660,7 @@
 	const clearBtn = document.querySelector('.google-search .clear-btn');
 
 	input.addEventListener('input', () => {
-		form.classList.toggle('has-text', input.value.trim() !== '');
+		form.classList.toggle('has-text', input.value !== '');
 	});
 
 	clearBtn.addEventListener('click', () => {

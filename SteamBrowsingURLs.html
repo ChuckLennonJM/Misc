@@ -678,50 +678,75 @@
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.querySelector("input[type='text']"); // adjust selector if needed
-  if (!searchInput) return;
+	const input = document.querySelector('.google-search input[name="q"]');
+	const form = document.querySelector('.google-search');
+	const clearBtn = document.querySelector('.google-search .clear-btn');
 
-  let history = [searchInput.value];
-  let index = 0;
-  let manual = false;
+	let history = [''];
+	let historyIndex = 0;
+	let userTyping = true;
 
-  function updateValue(newValue) {
-    manual = true;
-    searchInput.value = newValue;
-    // Trigger a real input event so the clear (x) button updates correctly
-    searchInput.dispatchEvent(new Event("input", { bubbles: true }));
-    manual = false;
-  }
+	// Update has-text class based on field content
+	function updateHasText() {
+		form.classList.toggle('has-text', input.value.trim() !== '');
+	}
 
-  searchInput.addEventListener("input", () => {
-    if (!manual) {
-      history = history.slice(0, index + 1);
-      history.push(searchInput.value);
-      index = history.length - 1;
-    }
-  });
+	// Input typing
+	input.addEventListener('input', () => {
+		if (userTyping) {
+			history = history.slice(0, historyIndex + 1);
+			history.push(input.value);
+			historyIndex++;
+		}
+		updateHasText();
+	});
 
-  searchInput.addEventListener("keydown", (e) => {
-    // Ctrl + Z (undo)
-    if (e.ctrlKey && e.key.toLowerCase() === "z") {
-      e.preventDefault();
-      if (index > 0) {
-        index--;
-        updateValue(history[index]);
-      }
-    }
+	// Clear button click
+	clearBtn.addEventListener('click', () => {
+		history = history.slice(0, historyIndex + 1);
+		history.push('');
+		historyIndex++;
+		input.value = '';
+		updateHasText();
+		input.focus();
+	});
 
-    // Ctrl + Y (redo)
-    if (e.ctrlKey && e.key.toLowerCase() === "y") {
-      e.preventDefault();
-      if (index < history.length - 1) {
-        index++;
-        updateValue(history[index]);
-      }
-    }
-  });
-});
+	// Ctrl + Z / Y undo-redo
+	input.addEventListener('keydown', (e) => {
+		if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
+			e.preventDefault();
+			if (historyIndex > 0) {
+				historyIndex--;
+				userTyping = false;
+				input.value = history[historyIndex];
+				updateHasText();
+				userTyping = true;
+			}
+		} else if (e.ctrlKey && (e.key === 'y' || e.key === 'Y')) {
+			e.preventDefault();
+			if (historyIndex < history.length - 1) {
+				historyIndex++;
+				userTyping = false;
+				input.value = history[historyIndex];
+				updateHasText();
+				userTyping = true;
+			}
+		}
+	});
+
+	// When the form is submitted (Google search triggered)
+	form.addEventListener('submit', (e) => {
+		// Allow the search to proceed
+		setTimeout(() => {
+			history = history.slice(0, historyIndex + 1);
+			history.push('');
+			historyIndex++;
+			input.value = '';
+			updateHasText();
+		}, 100); // Short delay so the search submission happens first
+	});
+
+	updateHasText();
 
 
 

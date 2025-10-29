@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ChuckLennon's URLs</title>
+	<style>
+
+		body {
+			font-family: Roboto, sans-serif;
+			background: linear-gradient(135deg, #1f003e, #140738);
+			color: #ff8c00;
+		}
+
+		h1 {
+			text-align: center;
+			margin-bottom: 20px;
+			color: darkorange;
+		}
+
+		.fast-access {
+			text-align: center;
+			margin-bottom: 20px;
+			color: darkorange;
+		}
+
+		.fast-access h2 {
+			margin-bottom: 20px;
+		}
+
+		.fast-access ul {
+			display: flex;
+			justify-content: center;
+			gap: 20px;
+			padding: 0;
+			list-style-type: none;
+		}
+
+		.fast-access li {
+			margin: 0 10px;
+		}
+
+		a {
+			text-decoration: none;
+			color: #0073e6;
+		}
+
+		.link-item img {
+			width: 16px;
+			height: 16px;
+			margin-right: 8px;
+			vertical-align: middle;
+		}
+
+		.categories {
+			display: flex;
+			justify-content: space-around;
+			margin-top: 20px;
+			padding-left: 50px;
+		
+		}
+
+		.category {
+			width: 22%;
+		}
+
+		.category h3 {
+			text-align: center;
+			margin-bottom: 15px;
+		}
+
+		.subcategory {
+			margin-left: 10px;
+		}
+
+		.subcategory h4 {
+			margin-bottom: 10px;
+			text-decoration: underline;
+			padding-left: 20px;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+
+		li {
+			margin-bottom: 5px;
+		}
+
+		li:hover {
+			text-decoration: underline;
+		}
+
+		.category:hover, .subcategory:hover, .fast-access:hover {
+			transform: scale(1.05); /* Slight zoom */
+		}
+
+
+		.search-bar {
+			position: fixed;
+			top: 50px;
+			left: 80px;
+			display: flex;
+			align-items: center;
+			background: #0a0a0a;
+			border-radius: 24px;
+			padding: 4px 12px;
+			width: 320px;
+			transition: background 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		.search-bar:hover {
+			background: #0f0f0f;
+			box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+		}
+
+		.search-bar button {
+			background: transparent;
+			border: none;
+			padding: 0;
+			margin-right: 0px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			position: relative;
+		}
+
+		.search-bar button svg {
+			fill: #5c5c5c;
+			transition: fill 0.2s ease;
+		}
+
+		.search-bar input[type="text"] {
+			flex: 1;
+			border: none;
+			background: transparent;
+			color: #e8eaed;
+			font-size: 14px;
+			padding: 6px 0;
+			outline: none;
+			caret-color: #e8eaed;
+			padding-left: 7px;
+		}
+
+		.search-bar input::placeholder {
+			color: #808080;
+		}
+		
+		.search-bar .clear-btn {
+			display: none; /* hidden by default */
+		}
+
+		.search-bar.has-text .clear-btn {
+			display: flex; /* show when there’s text */
+		}
+
+		.search-bar button:hover svg {
+			fill: #b6bbbf;
+		}
+
+
+
+.search-dropdown {
+	position: relative; /* parent for absolute menu */
+	display: flex; /*inline-block	 keeps logo inline */
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+/* The menu is hidden initially */
+.search-dropdown .search-menu {
+	position: absolute;
+	top: 142%; /* directly below the logo */
+	left: -12px;
+	background: #0a0a0a;
+	border-radius: 8px;
+	min-width: 140px;
+	padding: 0;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+	opacity: 0;
+	transform: translateY(-10px);
+	pointer-events: none;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+	z-index: 10000;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Show menu when hovering over logo or menu */
+.search-dropdown:hover .search-menu,
+.search-dropdown .search-menu:hover {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}
+
+/* Menu link styling */
+.search-dropdown .search-menu a {
+	color: #e8eaed;
+	text-decoration: none;
+	padding: 6px 12px;
+	display: block;
+	font-size: 14px;
+}
+
+.search-dropdown .search-menu a:hover {
+	background: #303134;
+	color: #e8eaed;
+	border-radius: 4px;
+}
+
+.search-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+	color: #808080;
+}
+
+.search-option:hover {
+    background: #343538;
+    border-radius: 8px;
+}
+
+.search-dropdown {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+/* Create an invisible hover area below the SVG */
+.search-dropdown::after {
+	content: "";
+	position: absolute;
+	top: 100%;     /* just below the logo */
+	left: 0;
+	width: 100%;
+	height: 20px;  /* invisible buffer zone */
+}
+
+	</style>
+	
+</head>
+<body>
+
+	<form action="https://www.google.com/search" method="get" target="_blank" class="search-bar">
+<div class="search-dropdown">
+    <button type="button" class="search-logo" aria-label="Search engine">
+        <!-- Default Google SVG -->
+ <svg width="20" height="20" viewBox="0 0 48 48">
+                <path fill="#5c5c5c" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.54 2.92 30.15 1 24 1 14.64 1 6.51 6.23 2.74 14.26l7.98 6.19C12.6 14.38 17.84 9.5 24 9.5z"/>
+				<path fill="#5c5c5c" d="M46.14 24.5c0-1.57-.14-3.09-.41-4.55H24v9.1h12.46c-.54 2.91-2.14 5.39-4.56 7.08l7.02 5.46C43.66 38.36 46.14 31.91 46.14 24.5z"/>
+				<path fill="#5c5c5c" d="M10.72 28.56a14.52 14.52 0 0 1 0-9.12L2.74 14.25a23.96 23.96 0 0 0 0 19.5l7.98-5.19z"/>
+				<path fill="#5c5c5c" d="M24 46.5c6.15 0 11.34-2.03 15.12-5.53l-7.02-5.46C29.57 37.5 26.9 38.5 24 38.5c-6.16 0-11.4-4.88-13.28-11.44l-7.98 5.19C6.51 41.77 14.64 47 24 47z"/>
+            </svg>
+    </button>
+
+    <div class="search-menu">
+        <div class="search-option" data-url="https://www.google.com/search">
+            <svg width="20" height="20" viewBox="0 0 48 48">
+                <path fill="#5c5c5c" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.54 2.92 30.15 1 24 1 14.64 1 6.51 6.23 2.74 14.26l7.98 6.19C12.6 14.38 17.84 9.5 24 9.5z"/>
+				<path fill="#5c5c5c" d="M46.14 24.5c0-1.57-.14-3.09-.41-4.55H24v9.1h12.46c-.54 2.91-2.14 5.39-4.56 7.08l7.02 5.46C43.66 38.36 46.14 31.91 46.14 24.5z"/>
+				<path fill="#5c5c5c" d="M10.72 28.56a14.52 14.52 0 0 1 0-9.12L2.74 14.25a23.96 23.96 0 0 0 0 19.5l7.98-5.19z"/>
+				<path fill="#5c5c5c" d="M24 46.5c6.15 0 11.34-2.03 15.12-5.53l-7.02-5.46C29.57 37.5 26.9 38.5 24 38.5c-6.16 0-11.4-4.88-13.28-11.44l-7.98 5.19C6.51 41.77 14.64 47 24 47z"/>
+            </svg>
+            Google
+        </div>
+        <div class="search-option" data-url="https://www.bing.com/search">
+            <svg width="20" height="20" viewBox="0 0 48 48">
+                <path fill="#0f0f0f" d="...Bing path..."></path>
+            </svg>
+            Bing
+        </div>
+        <div class="search-option" data-url="https://duckduckgo.com/">
+            <svg width="20" height="20" viewBox="0 0 48 48">
+                <path fill="#0f0f0f" d="...DuckDuckGo path..."></path>
+            </svg>
+            DuckDuckGo
+        </div>
+        <!-- Add more options -->
+    </div>
+</div>
+
+		<input type="text" name="q" placeholder="Search Google..." />
+		<button type="button" class="clear-btn" aria-label="Clear search">
+			<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+				<path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 
+					10.59 12 5 17.59 6.41 19 12 13.41 
+					17.59 19 19 17.59 13.41 12z"></path>
+			</svg>
+		</button>
+		<button type="submit" aria-label="Search">
+			<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+				<path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5
+					6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79
+					l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99
+					5 9.5S7.01 5 9.5 5 14 7.01 14 9.5
+					11.99 14 9.5 14z"></path>
+			</svg>
+		</button>
+	</form>
+
+
+
+
+	<!-- Page Title -->
+	<h1>Useful URLs :</h1>
+
+	<!-- Fast Access Links Section -->
+	<div class="fast-access">
+		<h2>Fast Access</h2>
+		<ul>
+			<li class="link-item">
+				<a href="https://cybershoke.net/cs2" target="_blank" rel="noopener noreferrer">
+					<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Cybershoke.ico" alt="Cybershoke">Cybershoke
+				</a>
+			</li>
+			<li class="link-item">
+				<a href="https://csnades.gg/" target="_blank" rel="noopener noreferrer">
+					<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/CSNades.ico" alt="CSNades">CSNades
+				</a>
+			</li>
+			<li class="link-item">
+				<a href="https://csfloat.com/" target="_blank" rel="noopener noreferrer">
+					<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/csfloat.ico" alt="CSFloat">CSFloat
+				</a>
+			</li>
+			<li class="link-item">
+				<a href="https://steamcommunity.com/my/" target="_blank" rel="noopener noreferrer">
+					<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="My Profile">My Profile
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Categories Section -->
+	<div class="categories">
+		<!-- Gameplay Category -->
+		<div class="category">
+			<h3>Gameplay</h3>
+
+			<!-- Practice Subcategory -->
+			<div class="subcategory">
+				<h4>Practice</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://cybershoke.net/cs2" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Cybershoke.ico" alt="CyberShoke">CyberShoke
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://xplay.gg/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/xplay.ico" alt="Xplay">Xplay
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://pracc.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/pracc.ico" alt="Pracc">Pracc
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://csnades.gg/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/CSNades.ico" alt="CSNades">CSNades
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Improving Subcategory -->
+			<div class="subcategory">
+				<h4>Improving</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://leetify.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/leetify.ico" alt="Leetify">Leetify
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://scope.gg/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/scope.ico" alt="ScopeGG">ScopeGG
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://pureskill.gg/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/pureskill.ico" alt="Pureskill">Pureskill
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://refrag.gg/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/refrag.ico" alt="Refrag">Refrag
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://www.warmupserver.net/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/warmupserver.ico" alt="WarmUpServer">WarmUpServer
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- MatchMaking Subcategory -->
+			<div class="subcategory">
+				<h4>MatchMaking</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://www.faceit.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/faceit.ico" alt="FaceIt">FaceIt
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://play.esea.net/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/esea.ico" alt="ESEA">ESEA
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://esportal.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/esportal.ico" alt="Esportal">Esportal
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://inui.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/inui.ico" alt="Inui">Inui
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://pvpro.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/pvpro.ico" alt="PvPro (Down)">PvPro (Down)
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Stats Category -->
+		<div class="category">
+			<h3>Stats</h3>
+
+			<!-- CS Stats Subcategory -->
+			<div class="subcategory">
+				<h4>CS Stats</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://csstats.gg/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/csstats.ico" alt="CSStats">CSStats
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://convars.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/convars.ico" alt="Convars">Convars
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://cswat.ch/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/cswatch.ico" alt="CSWatch">CSWatch
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://tracker.gg/cs2/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/tracker.ico" alt="TrackerGG">TrackerGG
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://extremereportbot.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/extremereportbot.ico" alt="Extreme Report Bot">Extreme Report Bot
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Faceit Stats Subcategory -->
+			<div class="subcategory">
+				<h4>Faceit Stats</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://faceitfinder.xyz/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/faceitfinderxyz.ico" alt="Faceit Finder">Faceit Finder
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://faceitfinder.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/faceitfindercom.ico" alt="Faceit Finder">Faceit Finder
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://faceittracker.net/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/faceittracker.ico" alt="Faceit Tracker">Faceit Tracker
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://faceitanalyser.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/faceitanalyser.ico" alt="Faceit Analyser">Faceit Analyser
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Status Subcategory -->
+			<div class="subcategory">
+				<h4>Status</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://steamstat.us" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/steamstatus.ico" alt="Steam Status">Steam Status
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://steamcharts.com/app/730" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/steamcharts.ico" alt="SteamCharts">CS Activity
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Others Stats Category -->
+		<div class="category">
+			<h3>Others Stats</h3>
+
+			<!-- Steam ID Subcategory -->
+			<div class="subcategory">
+				<h4>Steam ID</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://steamid.uk/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/steamiduk.ico" alt="SteamID">SteamID
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://steamid.xyz/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/steamidxyz.ico" alt="SteamID XYZ">SteamID XYZ
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://steamid.pro/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/steamidpro.ico" alt="SteamID Pro">SteamID Pro
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://steamid.io/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/steamidio.ico" alt="SteamID IO">SteamID IO
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://steamrep.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/stemrep.ico" alt="SteamRep">SteamRep
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Pro Stuff Subcategory -->
+			<div class="subcategory">
+				<h4>Pro Stuff</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://liquipedia.net/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/liquipedia.ico" alt="Liquipedia">Liquipedia
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://hltv.org/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/hltv.ico" alt="HLTV">HLTV
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://vakarm.net/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/vakarm.ico" alt="Vakarm">Vakarm
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://bo3.gg/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/bo3.ico" alt="BO3">BO3
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://esl.com/cs/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/ESL.ico" alt="ESL">ESL
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Pro Settings Subcategory -->
+			<div class="subcategory">
+				<h4>Pro Settings</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://prosettings.net/lists/cs2/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/prosettings.ico" alt="ProSettings">ProSettings
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://profilerr.net/cs-go/pro-players/settings/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/profilerr.ico" alt="Profilerr">Profilerr
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Skins Category -->
+		<div class="category">
+			<h3>Skins</h3>
+
+			<!-- Utilities Subcategory -->
+			<div class="subcategory">
+				<h4>Utilities</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://csgostash.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/csgostash.ico" alt="CSGO Stash">CSGO Stash
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://cs2inspects.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/cs2inspects.ico" alt="CS2 Inspects">CS2 Inspects
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://cs-sticker.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/cs-sticker.ico" alt="Combo Generator">Combo Generator
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://csbluegem.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/csbluegem.ico" alt="Blue Gems Patterns">Blue Gems Patterns
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://csgo-rep.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/CSGORep.ico" alt="CSGO Rep">CSGO Rep
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Markets Subcategory -->
+			<div class="subcategory">
+				<h4>Markets</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://csfloat.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/csfloat.ico" alt="CSFloat">CSFloat
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://buff.163.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/buff.ico" alt="Buff">Buff
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://buff.market/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/buffmarket.ico" alt="Buff Market">Buff Market
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://steamcommunity.com/market/search?appid=730&lock_appid=730" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="Community Market">Community Market
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://pricempire.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/pricempire.ico" alt="Price Empire">Price Empire
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Others Category -->
+		<div class="category">
+			<h3>Others</h3>
+
+			<!-- Steam Subcategory -->
+			<div class="subcategory">
+				<h4>Steam</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://steamcommunity.com/my/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="My Profile">My Profile
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://steamcommunity.com/my/inventory#730" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="My CS Inventory">My CS Inventory
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Maps Subcategory -->
+			<div class="subcategory">
+				<h4>Maps</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://steamcommunity.com/profiles/76561198082857351/myworkshopfiles/?appid=730" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="All CS:GO Official Maps">All CS:GO Official Maps
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://steamcommunity.com/workshop/browse/?appid=730&browsesort=trend&section=readytouseitems" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="Workshop Maps">Workshop Maps
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://gamebanana.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/gamebanana.ico" alt="GameBanana">GameBanana
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Others Subcategory -->
+			<div class="subcategory">
+				<h4>Others</h4>
+				<ul>
+					<li class="link-item">
+						<a href="https://google.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/google.ico" alt="Google">Google
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://en.wikipedia.org/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/wikipedia.ico" alt="WikiPedia">WikiPedia
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://youtu.be/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/youtube.ico" alt="YouTube">YouTube
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://twitch.tv/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/twitch.ico" alt="Twitch">Twitch
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://deepl.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/deepl.ico" alt="Deepl">Deepl
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://www.counter-strike.net/news/updates/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/CS.ico" alt="CS Updates">CS Updates
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://developer.valvesoftware.com/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/ValveDeveloper.ico" alt="Valve Developer">Valve Developer
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="#" onclick="copyLaunchOptions()">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="Launch Options" onclick="copyLaunchOptions()" style="cursor: pointer;">Launch Options
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script>
+
+	function copyLaunchOptions() {
+		const text = `-noreflex -noforcemaccel -noforcemspd -noforcemparms -refresh 165 -high -tickrate 128 -maxplayers_override 1000000 -language chucklennon -maxdownloadsizemb 3000 -allow_third_party_software -untrusted`;
+		navigator.clipboard.writeText(text);
+	}
+
+	const input = document.querySelector('.search-bar input[name="q"]');
+	const form = document.querySelector('.search-bar');
+	const clearBtn = document.querySelector('.search-bar .clear-btn');
+
+	input.addEventListener('input', () => {
+		form.classList.toggle('has-text', input.value.trim() !== '');
+	});
+
+	clearBtn.addEventListener('click', () => {
+		input.value = '';
+		form.classList.remove('has-text');
+		input.focus();
+	});
+
+
+const logoBtn = document.querySelector('.search-logo');
+const searchMenu = document.querySelector('.search-bar');
+const searchOptions = document.querySelectorAll('.search-option');
+const searchForm = document.querySelector('.search-bar');
+const searchInput = searchForm.querySelector('input[name="q"]');
+
+let selectedEngineUrl = 'https://www.google.com/search'; // default
+
+searchOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        // Get the URL
+        selectedEngineUrl = option.dataset.url;
+
+        // Update the logo in the bar
+        const newLogo = option.querySelector('svg').cloneNode(true);
+        logoBtn.innerHTML = '';
+        logoBtn.appendChild(newLogo);
+
+        // Hide menu
+        searchMenu.style.opacity = 0;
+        searchMenu.style.pointerEvents = 'none';
+    });
+});
+
+// Handle Enter key or submit button
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // prevent default Google form submit
+
+    const query = encodeURIComponent(searchInput.value.trim());
+    if (!query) return;
+
+    const searchUrl = selectedEngineUrl.includes('?') ?
+        `${selectedEngineUrl}&q=${query}` :
+        `${selectedEngineUrl}?q=${query}`;
+
+    window.open(searchUrl, '_blank');
+});
+
+
+
+  
+	const input = document.querySelector('.google-search input[name="q"]');
+	const form = document.querySelector('.google-search');
+	const clearBtn = document.querySelector('.google-search .clear-btn');
+
+	let history = [""];
+	let historyIndex = 0;
+	let ignoreNextInput = false;
+
+	function updateClearButton() {
+		// Show the clear button if the field is not completely empty
+		form.classList.toggle('has-text', input.value !== '');
+	}
+
+	input.addEventListener('input', () => {
+		if (ignoreNextInput) {
+			ignoreNextInput = false;
+			return;
+		}
+		const val = input.value;
+		if (history[historyIndex] !== val) {
+			history = history.slice(0, historyIndex + 1);
+			history.push(val);
+			historyIndex++;
+		}
+		updateClearButton();
+	});
+
+	clearBtn.addEventListener('click', () => {
+		input.value = '';
+		updateClearButton();
+		input.focus();
+	});
+
+	input.addEventListener('keydown', (e) => {
+		if (e.ctrlKey && (e.key === 'z' || e.key === 'Z')) {
+			e.preventDefault();
+			if (historyIndex > 0) {
+				historyIndex--;
+				ignoreNextInput = true;
+				input.value = history[historyIndex];
+				updateClearButton();
+			}
+		} else if (e.ctrlKey && (e.key === 'y' || e.key === 'Y')) {
+			e.preventDefault();
+			if (historyIndex < history.length - 1) {
+				historyIndex++;
+				ignoreNextInput = true;
+				input.value = history[historyIndex];
+				updateClearButton();
+			}
+		}
+	});
+
+	form.addEventListener('submit', (e) => {
+		// Let the search trigger normally
+		// but keep the last search in undo history
+		history = [...history, input.value];
+		historyIndex = history.length - 1;
+
+		// Clear the field after submission but keep undo buffer
+		setTimeout(() => {
+			input.value = '';
+			updateClearButton();
+		}, 50);
+	});
+
+	// Handle pasted text, alt codes, etc.
+	input.addEventListener('change', updateClearButton);
+
+	updateClearButton();
+
+
+</script>
+
+</html>

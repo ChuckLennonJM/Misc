@@ -677,17 +677,25 @@
 
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.querySelector("input[type='text']"); // adjust if needed
+  const searchInput = document.querySelector("input[type='text']"); // adjust selector if needed
   if (!searchInput) return;
 
   let history = [searchInput.value];
   let index = 0;
   let manual = false;
 
+  function updateValue(newValue) {
+    manual = true;
+    searchInput.value = newValue;
+    // Trigger a real input event so the clear (x) button updates correctly
+    searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+    manual = false;
+  }
+
   searchInput.addEventListener("input", () => {
     if (!manual) {
-      // remove future states when typing after undo
       history = history.slice(0, index + 1);
       history.push(searchInput.value);
       index = history.length - 1;
@@ -699,10 +707,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.ctrlKey && e.key.toLowerCase() === "z") {
       e.preventDefault();
       if (index > 0) {
-        manual = true;
         index--;
-        searchInput.value = history[index];
-        manual = false;
+        updateValue(history[index]);
       }
     }
 
@@ -710,14 +716,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.ctrlKey && e.key.toLowerCase() === "y") {
       e.preventDefault();
       if (index < history.length - 1) {
-        manual = true;
         index++;
-        searchInput.value = history[index];
-        manual = false;
+        updateValue(history[index]);
       }
     }
   });
 });
+
 
 
 

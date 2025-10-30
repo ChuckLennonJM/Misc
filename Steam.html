@@ -768,8 +768,8 @@
 <script>
 
 	function copyLaunchOptions() {
-		const text = `-noreflex -noforcemaccel -noforcemspd -noforcemparms -refresh 165 -high -tickrate 128 -maxplayers_override 1000000 -language chucklennon -maxdownloadsizemb 3000 -allow_third_party_software -untrusted`;
-		navigator.clipboard.writeText(text);
+		const LaunchOptions = `-noreflex -noforcemaccel -noforcemspd -noforcemparms -refresh 165 -high -tickrate 128 -maxplayers_override 1000000 -language chucklennon -maxdownloadsizemb 3000 -allow_third_party_software -untrusted`;
+		navigator.clipboard.writeText(LaunchOptions);
 	}
 
 	const input = document.querySelector('.search-bar input[name="q"]');
@@ -777,7 +777,7 @@
 	const clearBtn = document.querySelector('.search-bar .clear-btn');
 
 	input.addEventListener('input', () => {
-		form.classList.toggle('has-text', input.value !== '');
+		form.classList.toggle('has-text', input.value.trim() !== '');
 	});
 
 	clearBtn.addEventListener('click', () => {

@@ -97,25 +97,25 @@
 		}
 
 
-		.google-search {
+		.search-bar {
 			position: fixed;
 			top: 50px;
 			left: 80px;
 			display: flex;
 			align-items: center;
-			background: #202124;
+			background: #0a0a0a;
 			border-radius: 24px;
 			padding: 4px 12px;
 			width: 320px;
 			transition: background 0.2s ease, box-shadow 0.2s ease;
 		}
 
-		.google-search:hover {
-			background: #303134;
+		.search-bar:hover {
+			background: #0f0f0f;
 			box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 		}
 
-		.google-search button {
+		.search-bar button {
 			background: transparent;
 			border: none;
 			padding: 0;
@@ -127,12 +127,12 @@
 			position: relative;
 		}
 
-		.google-search button svg {
-			fill: #9aa0a6;
+		.search-bar button svg {
+			fill: #5c5c5c;
 			transition: fill 0.2s ease;
 		}
 
-		.google-search input[type="text"] {
+		.search-bar input[type="text"] {
 			flex: 1;
 			border: none;
 			background: transparent;
@@ -141,38 +141,150 @@
 			padding: 6px 0;
 			outline: none;
 			caret-color: #e8eaed;
+			padding-left: 7px;
 		}
 
-		.google-search input::placeholder {
-			color: #9aa0a6;
+		.search-bar input::placeholder {
+			color: #808080;
 		}
 		
-		.google-search .clear-btn {
+		.search-bar .clear-btn {
 			display: none; /* hidden by default */
 		}
 
-		.google-search.has-text .clear-btn {
+		.search-bar.has-text .clear-btn {
 			display: flex; /* show when there’s text */
 		}
 
-		.google-search button:hover svg {
+		.search-bar button:hover svg {
 			fill: #b6bbbf;
 		}
+
+
+
+.search-dropdown {
+	position: relative; /* parent for absolute menu */
+	display: flex; /*inline-block	 keeps logo inline */
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+/* The menu is hidden initially */
+.search-dropdown .search-menu {
+	position: absolute;
+	top: 142%; /* directly below the logo */
+	left: -12px;
+	background: #0a0a0a;
+	border-radius: 8px;
+	min-width: 140px;
+	padding: 0;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+	opacity: 0;
+	transform: translateY(-10px);
+	pointer-events: none;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+	z-index: 10000;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Show menu when hovering over logo or menu */
+.search-dropdown:hover .search-menu,
+.search-dropdown .search-menu:hover {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}
+
+/* Menu link styling */
+.search-dropdown .search-menu a {
+	color: #e8eaed;
+	text-decoration: none;
+	padding: 6px 12px;
+	display: block;
+	font-size: 14px;
+}
+
+.search-dropdown .search-menu a:hover {
+	background: #303134;
+	color: #e8eaed;
+	border-radius: 4px;
+}
+
+.search-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+	color: #808080;
+}
+
+.search-option:hover {
+    background: #343538;
+    border-radius: 8px;
+}
+
+.search-dropdown {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+/* Create an invisible hover area below the SVG */
+.search-dropdown::after {
+	content: "";
+	position: absolute;
+	top: 100%;     /* just below the logo */
+	left: 0;
+	width: 100%;
+	height: 20px;  /* invisible buffer zone */
+}
 
 	</style>
 	
 </head>
 <body>
 
-	<form action="https://www.google.com/search" method="get" target="_blank" class="google-search">
-		<button type="button" class="google-logo" aria-label="Google menu">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20" height="20">
-				<path fill="#0f0f0f" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.54 2.92 30.15 1 24 1 14.64 1 6.51 6.23 2.74 14.26l7.98 6.19C12.6 14.38 17.84 9.5 24 9.5z"/>
-				<path fill="#0f0f0f" d="M46.14 24.5c0-1.57-.14-3.09-.41-4.55H24v9.1h12.46c-.54 2.91-2.14 5.39-4.56 7.08l7.02 5.46C43.66 38.36 46.14 31.91 46.14 24.5z"/>
-				<path fill="#0f0f0f" d="M10.72 28.56a14.52 14.52 0 0 1 0-9.12L2.74 14.25a23.96 23.96 0 0 0 0 19.5l7.98-5.19z"/>
-				<path fill="#0f0f0f" d="M24 46.5c6.15 0 11.34-2.03 15.12-5.53l-7.02-5.46C29.57 37.5 26.9 38.5 24 38.5c-6.16 0-11.4-4.88-13.28-11.44l-7.98 5.19C6.51 41.77 14.64 47 24 47z"/>
-			</svg>
-		</button>
+	<form action="https://www.google.com/search" method="get" target="_blank" class="search-bar">
+<div class="search-dropdown">
+    <button type="button" class="search-logo" aria-label="Search engine">
+        <!-- Default Google SVG -->
+ <svg width="20" height="20" viewBox="0 0 48 48">
+                <path fill="#5c5c5c" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.54 2.92 30.15 1 24 1 14.64 1 6.51 6.23 2.74 14.26l7.98 6.19C12.6 14.38 17.84 9.5 24 9.5z"/>
+				<path fill="#5c5c5c" d="M46.14 24.5c0-1.57-.14-3.09-.41-4.55H24v9.1h12.46c-.54 2.91-2.14 5.39-4.56 7.08l7.02 5.46C43.66 38.36 46.14 31.91 46.14 24.5z"/>
+				<path fill="#5c5c5c" d="M10.72 28.56a14.52 14.52 0 0 1 0-9.12L2.74 14.25a23.96 23.96 0 0 0 0 19.5l7.98-5.19z"/>
+				<path fill="#5c5c5c" d="M24 46.5c6.15 0 11.34-2.03 15.12-5.53l-7.02-5.46C29.57 37.5 26.9 38.5 24 38.5c-6.16 0-11.4-4.88-13.28-11.44l-7.98 5.19C6.51 41.77 14.64 47 24 47z"/>
+            </svg>
+    </button>
+
+    <div class="search-menu">
+        <div class="search-option" data-url="https://www.google.com/search">
+            <svg width="20" height="20" viewBox="0 0 48 48">
+                <path fill="#5c5c5c" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.54 2.92 30.15 1 24 1 14.64 1 6.51 6.23 2.74 14.26l7.98 6.19C12.6 14.38 17.84 9.5 24 9.5z"/>
+				<path fill="#5c5c5c" d="M46.14 24.5c0-1.57-.14-3.09-.41-4.55H24v9.1h12.46c-.54 2.91-2.14 5.39-4.56 7.08l7.02 5.46C43.66 38.36 46.14 31.91 46.14 24.5z"/>
+				<path fill="#5c5c5c" d="M10.72 28.56a14.52 14.52 0 0 1 0-9.12L2.74 14.25a23.96 23.96 0 0 0 0 19.5l7.98-5.19z"/>
+				<path fill="#5c5c5c" d="M24 46.5c6.15 0 11.34-2.03 15.12-5.53l-7.02-5.46C29.57 37.5 26.9 38.5 24 38.5c-6.16 0-11.4-4.88-13.28-11.44l-7.98 5.19C6.51 41.77 14.64 47 24 47z"/>
+            </svg>
+            Google
+        </div>
+        <div class="search-option" data-url="https://www.bing.com/search">
+            <svg width="20" height="20" viewBox="0 0 48 48">
+                <path fill="#0f0f0f" d="...Bing path..."></path>
+            </svg>
+            Bing
+        </div>
+        <div class="search-option" data-url="https://duckduckgo.com/">
+            <svg width="20" height="20" viewBox="0 0 48 48">
+                <path fill="#0f0f0f" d="...DuckDuckGo path..."></path>
+            </svg>
+            DuckDuckGo
+        </div>
+        <!-- Add more options -->
+    </div>
+</div>
+
 		<input type="text" name="q" placeholder="Search Google..." />
 		<button type="button" class="clear-btn" aria-label="Clear search">
 			<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
@@ -574,7 +686,7 @@
 					</li>
 					<li class="link-item">
 						<a href="https://steamcommunity.com/my/inventory#730" target="_blank" rel="noopener noreferrer">
-							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="Steam Inventory">My CS Inventory
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="My CS Inventory">My CS Inventory
 						</a>
 					</li>
 				</ul>
@@ -586,7 +698,7 @@
 				<ul>
 					<li class="link-item">
 						<a href="https://steamcommunity.com/profiles/76561198082857351/myworkshopfiles/?appid=730" target="_blank" rel="noopener noreferrer">
-							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="CSGO Official Maps">All CSGO Official Maps
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/Steam.ico" alt="All CS:GO Official Maps">All CS:GO Official Maps
 						</a>
 					</li>
 					<li class="link-item">
@@ -609,6 +721,11 @@
 					<li class="link-item">
 						<a href="https://google.com/" target="_blank" rel="noopener noreferrer">
 							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/google.ico" alt="Google">Google
+						</a>
+					</li>
+					<li class="link-item">
+						<a href="https://en.wikipedia.org/" target="_blank" rel="noopener noreferrer">
+							<img src="https://raw.githubusercontent.com/ChuckLennonJM/Misc/main/Archives/Steam/Icons/wikipedia.ico" alt="WikiPedia">WikiPedia
 						</a>
 					</li>
 					<li class="link-item">
@@ -651,16 +768,16 @@
 <script>
 
 	function copyLaunchOptions() {
-		const text = `-noreflex -noforcemaccel -noforcemspd -noforcemparms -refresh 165 -high -tickrate 128 -maxplayers_override 1000000 -language chucklennon -maxdownloadsizemb 3000 -allow_third_party_software -untrusted`;
-		navigator.clipboard.writeText(text);
+		const LaunchOptions = `-noreflex -noforcemaccel -noforcemspd -noforcemparms -refresh 165 -high -tickrate 128 -maxplayers_override 1000000 -language chucklennon -maxdownloadsizemb 3000 -allow_third_party_software -untrusted`;
+		navigator.clipboard.writeText(LaunchOptions);
 	}
 
-	const input = document.querySelector('.google-search input[name="q"]');
-	const form = document.querySelector('.google-search');
-	const clearBtn = document.querySelector('.google-search .clear-btn');
+	const input = document.querySelector('.search-bar input[name="q"]');
+	const form = document.querySelector('.search-bar');
+	const clearBtn = document.querySelector('.search-bar .clear-btn');
 
 	input.addEventListener('input', () => {
-		form.classList.toggle('has-text', input.value !== '');
+		form.classList.toggle('has-text', input.value.trim() !== '');
 	});
 
 	clearBtn.addEventListener('click', () => {
@@ -669,7 +786,7 @@
 		input.focus();
 	});
 
-	
+
 </script>
 
 </html>
